@@ -12,17 +12,16 @@ import numpy as np
 from skimage import exposure as exp
 
 # Read an image 
-img = io.imread('sample.jpg') 
+img = io.imread('image.jpg') 
 
 # convert image to gray level
 r = color.rgb2gray(img)
 # convert data type of image to 8-bit
 r = util.img_as_ubyte(r)
    
-# apply gamma method s = cr^y
+# apply inverse log transformation method
 c = 1
-y = 1.5
-s = exp.adjust_gamma(r, y, c)
+s = exp.adjust_log(r, c, inv=True)
 # convert data type of image to 8-bit
 s = s.astype(np.uint8)
 
@@ -31,12 +30,15 @@ s = s.astype(np.uint8)
 plt.imshow(r, cmap='gray')
 plt.title('before')
 plt.show()
+
 ax = plt.hist(r.ravel())
 plt.title('hist before')
 plt.show()
+
 plt.imshow(s, cmap='gray')
 plt.title('after')
 plt.show()
-ax = plt.hist(s.ravel())
+
+plt.hist(s.ravel())
 plt.title('hist after')
 plt.show()

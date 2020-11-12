@@ -25,5 +25,6 @@ r[r < 127] = 0
 # display image
 plt.imshow(r, cmap='gray')
 plt.show()
-ax = plt.hist(r.ravel())
+
+plt.hist(r.ravel())
 plt.show()

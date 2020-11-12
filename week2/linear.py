@@ -4,6 +4,8 @@ from skimage import io
 from skimage import color
 # import util to convert image to 8-bit (img_as_ubyte) from scikit-image library
 from skimage import util
+# from matplotlib import pyplot
+import matplotlib.pyplot as plt
 
 # read image
 img = io.imread(fname= 'image.jpg')
@@ -18,5 +20,19 @@ r = util.img_as_ubyte(gray_image)
 # apply linear rule s = 255 - r 
 s = 255 - r
 
-# display s image
-io.imshow(s)
+# display image
+plt.imshow(r, cmap='gray')
+plt.title('before')
+plt.show()
+
+ax = plt.hist(r.ravel())
+plt.title('hist before')
+plt.show()
+
+plt.imshow(s, cmap='gray')
+plt.title('after')
+plt.show()
+
+ax = plt.hist(s.ravel())
+plt.title('hist after')
+plt.show()
