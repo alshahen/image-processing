@@ -23,7 +23,7 @@ r = util.img_as_ubyte(r)
 c = 1
 s = exp.adjust_log(r, c)
 # convert data type of image to 8-bit
-s = s.astype(np.uint8)
+s = s.astype(np.uint16)
 
 
 # display image
